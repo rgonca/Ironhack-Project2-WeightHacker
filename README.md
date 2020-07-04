@@ -1,1 +1,2 @@
-# Ironhack-Project2-WeightHacker
+# Ironhack - Project 2 
+## WeightHacker
