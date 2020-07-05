@@ -1,0 +1,22 @@
+<form action="/edit" method="POST">
+
+    <div class="form-group">
+        <label for="picture">Choose a profile picture:</label>
+        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
+    </div>
+
+    <div class="form-group">
+        <p>Sex:</p>
+        <input type="radio" id="male" name="sex" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="sex" value="female">
+        <label for="female">Female</label><br>
+    </div>
+
+    <div class="form-group">
+        <label for="idealweight">Target weight in kg:</label>
+        <input type="number" id="idealweight" name="idealweight">
+    </div>
+    <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
+
+</form>

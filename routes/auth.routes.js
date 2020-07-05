@@ -38,7 +38,7 @@ router.post("/signup", (req, res, next) => {
 // User login
 router.get('/login', (req, res) => res.render('auth/login', { "errorMsg": req.flash("error") }))
 router.post('/login', passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/profile",
     failureRedirect: "/login",
     failureFlash: true,
     passReqToCallback: true,
@@ -46,10 +46,10 @@ router.post('/login', passport.authenticate("local", {
 }))
 
 // comprobar si el usuario tiene la sesión iniciada
+//FIX: mostrar mensaje de error si se intenta acceder al perfil sin iniciar sesión
 const checkLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('index', { loginErrorMessage: 'Restricted access' })
 router.get("/profile", checkLoggedIn, (req, res) => {
     res.render("auth/profile", { user: req.user })
-    // res.redirect("/profile")
 })
 
 
