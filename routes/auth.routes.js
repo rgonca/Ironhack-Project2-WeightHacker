@@ -47,7 +47,10 @@ router.post('/login', passport.authenticate("local", {
 
 // comprobar si el usuario tiene la sesión iniciada
 const checkLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('index', { loginErrorMessage: 'Restricted access' })
-router.get("/profile", checkLoggedIn, (req, res) => res.render("auth/profile", { user: req.user }))
+router.get("/profile", checkLoggedIn, (req, res) => {
+    res.render("auth/profile", { user: req.user })
+    // res.redirect("/profile")
+})
 
 
 // User logout
