@@ -1,5 +1,9 @@
 body {
-  font-weight: 200; }
+  font-weight: 200;
+  background-image: url(./../images/lauren-mancke-sil2Hx4iupI-unsplash.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  opacity: 0.7; }
 
 h1, h2, h3 {
   font-weight: 200; }
