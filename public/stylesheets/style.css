@@ -2,7 +2,7 @@ body {
   font-weight: 200;
   background-image: url(./../images/lauren-mancke-sil2Hx4iupI-unsplash.jpg);
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   opacity: 0.7;
   font-family: Quicksand; }
 
@@ -11,6 +11,13 @@ h1, h2, h3 {
 
 .navbar {
   margin-bottom: 70px; }
+
+.navicon {
+  width: 110%; }
+
+.logo {
+  width: 50%;
+  position: fixed; }
 
 #errorMsg {
   background-color: red;
