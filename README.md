@@ -68,3 +68,7 @@ POST /weigths
 
 11. Obtain historical data on user's weight
 GET /weights
+
+Endpoints Table
+
+https://docs.google.com/document/d/1OHunDXJFPNSby8PSIBlEq83TdxhMudEehAKHHALQi-8/edit?usp=sharing
