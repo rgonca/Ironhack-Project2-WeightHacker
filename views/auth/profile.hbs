@@ -3,9 +3,14 @@
 
 
 
-        <h2>Hi there, {{user.username}}! Welcome to your personal profile</h2>
+        <h2>Hi there, {{user.name}}! Welcome to your personal profile</h2>
+        <img src="{{user.avatar}}">
+        <h3>{{user.sex}}</h3>
+        <h3>{{user.initialWeight}} Kg</h3>
+        <h3>{{user.targetWeight}} Kg</h3>
+
         <br>
-        <a href="/edit" class="btn btn-dark btn-block btn-lg">Edit your profile</a>
+        <a href="/users/{{user._id}}" class="btn btn-dark btn-block btn-lg">Edit your profile</a>
         <a href="/app" class="btn btn-dark btn-block btn-lg">Get started</a>
 
     </div>

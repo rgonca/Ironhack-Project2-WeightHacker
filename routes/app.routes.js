@@ -4,6 +4,9 @@ const router = express.Router()
 const axios = require('axios')
 const qs = require('qs')
 
+const Meal = require("../models/meal.model")
+
+
 
 router.get('/app', (req, res, next) => res.render('app/app'))
 
@@ -21,18 +24,26 @@ router.post("/app/search", (req, res, next) => {
         url: 'https://trackapi.nutritionix.com/v2/natural/nutrients'
     }
     axios(options)
-        .then(responseData => {
-            const response = responseData.data.foods[0]
-            console.log(response)
-            res.render("app/app", response)
-            // console.log(response.status)
-            // console.log(response.data)
-        })
-        .catch(error => next(error))
+    .then(responseData => {
+        const response = responseData.data.foods[0]
+        console.log(response)
+        res.render("app/meal", response)
+        // console.log(response.status)
+        // console.log(response.data)
+    })
+    .catch(error => next(error))
 })
+// router.post('app/meal', (req, res, next) => {
+//     const { name, kcal, amount_gr } = req.body
+//     Meal.create({ name, kcal, amount_gr }
+//     .then())
+// })
+
 
 //res.render y crear vista para mostrar info q necesitemos
 //meter funcion para calcular calorias router.get("/signup", (req, res) => res.render("auth/signup"))
 
 module.exports = router
+
+//Crear en la vista de la barra de busqueda una tabla donde se muestre el resultado de la busqueda y un boton de añadido (+) al registro.
 

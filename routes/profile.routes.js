@@ -11,19 +11,22 @@ const User = require("../models/user.model")
 
 router.get("/profile", (req, res) => res.render("auth/profile"))
 
-router.get("/edit", (req, res) => res.render("auth/edit"))
+router.get("/users/:userId", (req, res, next) => {
+    User.findById(req.params.userId)
+    .then((user) => res.render("auth/edit", {user}))
+    .catch(err => next(new Error(err)))
+    
+})
 
 
-
-router.post('/edit', (req, res, next) => {
-    const { name, picture, sex, idealweight } = req.body
-    Profile
-        .create({ name, picture, sex, idealweight })
-        .then(x => res.redirect('/profile'))
-        .catch(err => next(new Error(err)))
+router.post('/users/:userId', (req, res, next) => {
+    const { name, avatar, sex, targetWeight } = req.body
+    console.log('traza', req.body)
+    User.update({_id: req.params.userId}, { name, avatar, sex, targetWeight })
+    .then(() => res.redirect(`/profile`))
+    .catch (err => next(new Error(err)))    
 })
 
 
 
 module.exports = router
-

@@ -81,3 +81,5 @@ https://docs.google.com/document/d/1OHunDXJFPNSby8PSIBlEq83TdxhMudEehAKHHALQi-8/
 
 Autocomplete searchbar
 calendar?
+HACER:
+Crear en la vista de la barra de busqueda una tabla donde se muestre el resultado de la busqueda y un boton de añadido (+) al registro.
