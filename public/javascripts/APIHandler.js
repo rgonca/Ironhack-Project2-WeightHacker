@@ -1,32 +1,19 @@
-class APIHandler {
-    constructor(baseUrl) {
-        this.BASE_URL = baseUrl
-        this.axiosApp = axios.create({ baseURL: baseUrl })
-    }
-
-    //crear funcion que retorne llamada a la api en barra de busqueda
-    //filtrar a food_name y nf_calories
+//import axios y qs
+const axios = require('axios')
+const qs = require('qs')
 
 
-    getMeals(meal) {
-        return this.axiosApp.post('https://trackapi.nutritionix.com/v2/search/instant?query=`${meal}`', {
-            headers: {
-                "x-app-id": `${app_id}`,
-                "x-app-key": `${app_key}`
-            }
+
+const getMeals = () => {
+    return axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', {
+        headers: {
+            "x-app-id": 'd4780a4b',
+            "x-app-key": '1db1f17052ecb8cd9890644962072817'
+        }
+    })
+        .then(res => {
+            console.log('Get meal: ', res.data)
+            return res.data
         })
-            .then(res => {
-                console.log('Get meal: ', res.data)
-                return res.data
-            })
-            .catch(error => console.log('Error getting list', error))
-    }
-
-    // getOneRegister(id) {
-    //     return this.axiosApp.get(``)
-    //         .then(res => {
-    //             console.log('Get one register: ', res.data)
-    //             return res.data
-    //         })
-    //         .catch(error => console.log('Error fetching one register', error))
+        .catch(error => console.log('Error getting list', error))
 }

@@ -11,8 +11,8 @@ const bcryptSalt = 10
 // User signup
 router.get("/signup", (req, res) => res.render("auth/signup"))
 router.post("/signup", (req, res, next) => {
-
-    const { username, password } = req.body
+    console.log(req.body)
+    const { username, password, name, sex, avatar, initialWeight, targetWeight } = req.body
     if (!username || !password) {
         res.render("auth/signup", { errorMsg: "Fill username and passowrd fields" })
         return
@@ -27,7 +27,7 @@ router.post("/signup", (req, res, next) => {
             const salt = bcrypt.genSaltSync(bcryptSalt)
             const hashPass = bcrypt.hashSync(password, salt)
 
-            User.create({ username, password: hashPass })
+            User.create({ username, password: hashPass, name, sex, avatar, initialWeight: Number(initialWeight), targetWeight: Number(targetWeight), historyWeight: [initialWeight] })
                 .then(() => res.redirect("/"))
                 .catch(() => res.render("auth/signup", { errorMsg: "The user couldn't be created" }))
         })
