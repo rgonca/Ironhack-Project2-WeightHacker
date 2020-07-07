@@ -6,7 +6,7 @@ const qs = require('qs')
 
 const Meal = require("../models/meal.model")
 const Registry = require("../models/registry.model")
-const User = require("../models/user.model")
+// const User = require("../models/user.model")
 
 
 
@@ -27,14 +27,14 @@ router.post("/app/search", (req, res, next) => {
         url: 'https://trackapi.nutritionix.com/v2/natural/nutrients'
     }
     axios(options)
-        .then(responseData => {
-            const response = responseData.data.foods[0]
-            console.log(response)
-            res.render("app/meal", response)
-            // console.log(response.status
-            // console.log(response.data)
-        })
-        .catch(error => next(error))
+    .then(responseData => {
+        const response = responseData.data.foods[0]
+        console.log(response)
+        res.render("app/meal", response)
+        // console.log(response.status
+        // console.log(response.data)
+    })
+    .catch(error => next(error))
 })
 
 //crear ruta para añadir nuevo meal(instancia del modelo meal), en esa ruta hacer un push al array en registry,
@@ -48,25 +48,28 @@ router.get('/registry/new', (req, res) => res.render('app/registry'))
 router.post('/registry/new', (req, res, next) => {
     const { owner, date } = req.body
     Registry.create({ owner, date })
-        .then(registry => res.redirect(`/profile`))//ESTA RUTA DEBE CAMBIARSE LUEGO
-        .catch(err => next(new Error(err)))
-
+    .then(registry => res.redirect(`/profile`))//ESTA RUTA DEBE CAMBIARSE LUEGO
+    .catch(err => next(new Error(err)))
+    
 })
 
-//Añade comida al registro existente
+//Crea una nueva comida
 router.get('/meal/new', (req, res, next) => {
     Registry.find() //  buscar registro por usuario??
-        .then(registry => res.render('app/meal', { registry }))
-        .catch(err => next(new Error(err)))
-
+    .then(registry => res.render('app/meal', { registry }))
+    .catch(err => next(new Error(err)))
+    
 })
 
 router.post('/meal/new', (req, res, next) => {
     const { image, name, kcal, amount_gr } = req.body
-    Meal.create({ _id: req.params.registryId }, { image, name, kcal, amount_gr })
-        .then(res.redirect('/app'))
+    Meal.create({ image, name, kcal, amount_gr })
+        .then(x => res.redirect('/profile'))
         .catch(err => next(new Error(err)))
 })
+//Añade una comida a un registro existente
+
+// router.get('', (req, res, next) =>)
 
 
 
