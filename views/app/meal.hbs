@@ -1,8 +1,51 @@
+<main>
+
+    {{!-- <form action="/app/" method="POST" class="form-inline active-cyan-3 active-cyan-4"></form> --}}
+    <table>
+        <tr class="meal">
+            <td class="picture">
+                <img src="{{photo.thumb}}" />
+            </td>
+            <td class="name">
+                {{food_name}}
+            </td>
+
+            <td id="mealWeight">
+
+                <input type="number" value="{{serving_weight_grams}}" min="0" placeholder="{{serving_weight_grams}}">
+
+                <span>gr</span>
+
+            </td>
+
+            <td class="serving">
+
+                Serving:<span>{{serving_weight_grams}}</span>gr
+
+            </td>
+
+            <td class="calories">
+
+                serving:<span>{{nf_calories}}</span> kcal
+
+            </td>
+
+            <td>
+
+                <button id="calculate" class="btn btn-dark ">Calculate</button>
+
+            </td>
+
+            <td class="totalCalories">
+
+                total calories: <span>0</span> kcal
+
+            </td>
 
 
+        </tr>
+    </table>
+    <a href="/app" class="btn btn-dark btn-block btn-lg">Add to log</a>
 
- <img src={{photo.thumb}} />
-            {{food_name}}
-            {{serving_weight_grams}}gr
-            {{nf_calories}}kcal
-<a href="/app" class="btn btn-dark btn-block btn-lg">Add to log</a>
+    <script src="/javascripts/calculator.js"></script>
+</main>

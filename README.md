@@ -81,10 +81,8 @@ https://docs.google.com/document/d/1OHunDXJFPNSby8PSIBlEq83TdxhMudEehAKHHALQi-8/
 
 Autocomplete searchbar
 calendar?
-<<<<<<< HEAD
 HACER:
 Crear en la vista de la barra de busqueda una tabla donde se muestre el resultado de la busqueda y un boton de añadido (+) al registro.
-=======
 
 
 
@@ -99,4 +97,3 @@ git checkout -b (nombre)
 git checkout -b roberto
 git checkout -n miriam
 
->>>>>>> 23b43fdbcce993021a33ab7009c6fa38a8df3157

@@ -1,0 +1,29 @@
+<form action="/users/{{user._id}}/registry" method="POST">
+
+    
+<h2>Create new food log</h2>
+
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date">
+    </div>
+
+    <div class="form-group">
+        <label for="foodName">Food name</label>
+        <input type="number" id="foodName" name="foodName">
+    </div>
+
+    <div class="form-group">
+        <label for="amount">Amount in Gr</label>
+        <input type="number" id="amount" name="amount">
+    </div>
+
+    <div class="form-group">
+        <label for="kcal">Kcal</label>
+        <input type="number" id="kcal" name="kcal">
+    </div>
+
+
+    <button type="submit" class="btn btn-dark btn-block btn-lg">Create log</button>
+
+</form>

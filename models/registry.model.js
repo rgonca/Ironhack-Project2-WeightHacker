@@ -6,7 +6,6 @@ const registrySchema = new Schema({
     date: Date,
     name: String,
     kcal: Number,
-    meals: [{ type: Schema.Types.ObjectId, ref: 'Meal' }],
     amount_gr: Number
 }, {
     timestamps: true
