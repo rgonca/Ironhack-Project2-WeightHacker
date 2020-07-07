@@ -54,6 +54,7 @@ router.post('/registry/new', (req, res, next) => {
 })
 
 //Crea una nueva comida
+//REVISAR RUTAS EN EL CLIENTE
 router.get('/meal/new', (req, res, next) => {
     Registry.find() //  buscar registro por usuario??
     .then(registry => res.render('app/meal', { registry }))
@@ -64,14 +65,25 @@ router.get('/meal/new', (req, res, next) => {
 router.post('/meal/new', (req, res, next) => {
     const { image, name, kcal, amount_gr } = req.body
     Meal.create({ image, name, kcal, amount_gr })
-        .then(x => res.redirect('/profile'))
-        .catch(err => next(new Error(err)))
+    .then(x => res.redirect('/profile'))
+    .catch(err => next(new Error(err)))
 })
 //Añade una comida a un registro existente
+//REVISAR RUTAS EN EL CLIENTE
+//Da error 404 pero aun asi no funciona
+// router.get('/registry/:id', (req, res, next) => {
+//     Registry.findById(req.params.id)
+//     .then(theRegistry => res.render('/app', theRegistry))
+//     .catch(err => next(new Error(err)))
 
-// router.get('', (req, res, next) =>)
+// })
+// router.post('/registry/:id', (req, res, next) => {
+//     const { meal } = req.body
+//     Registry.findByIdAndUpdate(req.params.id, { $push: { Meal } })
+//     .then(() => res.redirect('/app'))
+//     .catch(err => next(new Error(err)))
 
-
+// })
 
 
 module.exports = router
