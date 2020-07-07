@@ -1,7 +1,7 @@
-<form action="/users/{{user._id}}/registry" method="POST">
+<form action="/registry/new" method="POST">
 
-    
-<h2>Create new food log</h2>
+
+    <h2>Create new food log</h2>
 
     <div class="form-group">
         <label for="date">Date</label>
@@ -9,18 +9,14 @@
     </div>
 
     <div class="form-group">
-        <label for="foodName">Food name</label>
-        <input type="number" id="foodName" name="foodName">
+        <label for="owner"></label>
+        <p value="{{user._id}}">{{name}}</p>
     </div>
 
+    {{!-- ESTE ULTIMO INPUT SE TIENE QUE CAMBIAR O QUITAR --}}
     <div class="form-group">
-        <label for="amount">Amount in Gr</label>
-        <input type="number" id="amount" name="amount">
-    </div>
-
-    <div class="form-group">
-        <label for="kcal">Kcal</label>
-        <input type="number" id="kcal" name="kcal">
+        <label for="meal">meal</label>
+        <input type="text" id="meal" name="meal">
     </div>
 
 

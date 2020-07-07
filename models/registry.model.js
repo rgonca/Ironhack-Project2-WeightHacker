@@ -4,9 +4,7 @@ const Schema = mongoose.Schema
 const registrySchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
     date: Date,
-    name: String,
-    kcal: Number,
-    amount_gr: Number
+    meal: [{ type: Schema.Types.ObjectId, ref: 'Meal' }]
 }, {
     timestamps: true
 })

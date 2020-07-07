@@ -4,14 +4,17 @@ const router = express.Router()
 const axios = require('axios')
 const qs = require('qs')
 
-// const Meal = require("../models/meal.model")
+const Meal = require("../models/meal.model")
 const Registry = require("../models/registry.model")
+const User = require("../models/user.model")
 
 
-router.get('/app', (req, res, next) => res.render('app/app'))
 
+router.get('/users/:userId/app', (req, res, next) => res.render('app/app'))
+//NECESITO HACER UNA LLAMADA AL ID DEL USUARIO
 router.post("/app/search", (req, res, next) => {
     console.log('formulario de busqueda', req.body)
+    console.log('trazas', 'usuario', req.user)
     const options = {
         // const {food_name,serving_weight_grams, nf_calories} =
         method: 'POST',
@@ -24,14 +27,14 @@ router.post("/app/search", (req, res, next) => {
         url: 'https://trackapi.nutritionix.com/v2/natural/nutrients'
     }
     axios(options)
-    .then(responseData => {
-        const response = responseData.data.foods[0]
-        console.log(response)
-        res.render("app/meal", response)
-        // console.log(response.status)
-        // console.log(response.data)
-    })
-    .catch(error => next(error))
+        .then(responseData => {
+            const response = responseData.data.foods[0]
+            console.log(response)
+            res.render("app/meal", response)
+            // console.log(response.status
+            // console.log(response.data)
+        })
+        .catch(error => next(error))
 })
 
 // router.post('', (req, res, next) => {
@@ -40,35 +43,39 @@ router.post("/app/search", (req, res, next) => {
 //     .then()
 // } )
 
+//crear ruta para añadir nuevo meal(instancia del modelo meal), en esa ruta hacer un push al array en registry,
+//findoneAndUpdate del array meal de registry 
+//añadir nuevo meal significa hacer push al array meal del modelo registry
 
-
-
-//Añade comida al registro existente
-router.get('/app/meal', (req, res, next) => {
-    Registry.find() //  buscar registro por usuario??
-    .then(userRegistry => res.render('app/app', {userRegistry}))
-    .catch(err => next(new Error(err)))
-    
-})
 
 //Crea registro de cero
-router.get('/users/:userId/registry', (req, res) =>  res.render('app/registry'))
+router.get('/registry/new', (req, res) => res.render('app/registry'))
 
-router.post('/users/:userId/registry', (req, res, next) => {
-    const { date, name, kcal, amount_gr } = req.body
-    Registry.create({ _id: req.params.userId }, { date, name, kcal, amount_gr })
-    // .then(registry => res.render("app/registry"))
-    .catch(err => next(new Error(err)))
-    
+router.post('/registry/new', (req, res, next) => {
+    const { owner, date } = req.body
+    Registry.create({ owner, date })
+        .then(registry => res.redirect(`/profile`))//ESTA RUTA DEBE CAMBIARSE LUEGO
+        .catch(err => next(new Error(err)))
+
 })
 
+//Añade comida al registro existente
+// router.get('/meal/new', (req, res, next) => {
+//     Registry.find() //  buscar registro por usuario??
+//         .then(registry => res.render('app/meal', { registry }))
+//         .catch(err => next(new Error(err)))
+
+// })
+
+// router.post('/meal/new', (req, res, next) => {
+//     const { image, name, kcal, amount_gr } = req.body
+//     Meal.create({ _id: req.params.registryId }, { image, name, kcal, amount_gr })
+//         .then(res.redirect('/app'))
+//         .catch(err => next(new Error(err)))
+// })
 
 
 
-//res.render y crear vista para mostrar info q necesitemos
-//meter funcion para calcular calorias router.get("/signup", (req, res) => res.render("auth/signup"))
 
 module.exports = router
-
-//Crear en la vista de la barra de busqueda una tabla donde se muestre el resultado de la busqueda y un boton de añadido (+) al registro.
 
