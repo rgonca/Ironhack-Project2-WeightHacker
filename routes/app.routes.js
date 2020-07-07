@@ -37,12 +37,6 @@ router.post("/app/search", (req, res, next) => {
         .catch(error => next(error))
 })
 
-// router.post('', (req, res, next) => {
-//     const { owner, date, name, kcal, meals, amount_gr } = req.body
-//     Registry.create({ owner, date, name, kcal, meals, amount_gr })
-//     .then()
-// } )
-
 //crear ruta para añadir nuevo meal(instancia del modelo meal), en esa ruta hacer un push al array en registry,
 //findoneAndUpdate del array meal de registry 
 //añadir nuevo meal significa hacer push al array meal del modelo registry
@@ -60,19 +54,19 @@ router.post('/registry/new', (req, res, next) => {
 })
 
 //Añade comida al registro existente
-// router.get('/meal/new', (req, res, next) => {
-//     Registry.find() //  buscar registro por usuario??
-//         .then(registry => res.render('app/meal', { registry }))
-//         .catch(err => next(new Error(err)))
+router.get('/meal/new', (req, res, next) => {
+    Registry.find() //  buscar registro por usuario??
+        .then(registry => res.render('app/meal', { registry }))
+        .catch(err => next(new Error(err)))
 
-// })
+})
 
-// router.post('/meal/new', (req, res, next) => {
-//     const { image, name, kcal, amount_gr } = req.body
-//     Meal.create({ _id: req.params.registryId }, { image, name, kcal, amount_gr })
-//         .then(res.redirect('/app'))
-//         .catch(err => next(new Error(err)))
-// })
+router.post('/meal/new', (req, res, next) => {
+    const { image, name, kcal, amount_gr } = req.body
+    Meal.create({ _id: req.params.registryId }, { image, name, kcal, amount_gr })
+        .then(res.redirect('/app'))
+        .catch(err => next(new Error(err)))
+})
 
 
 
