@@ -4,8 +4,7 @@ const Schema = mongoose.Schema
 const registrySchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
     date: Date,
-    meal: [{
-        id: Number,
+    meals: [{
         image: String,
         name: String,       
         amount_gr: Number,    

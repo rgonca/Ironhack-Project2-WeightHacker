@@ -12,7 +12,8 @@
 
             <td id="mealWeight">
 
-                <input type="number" value="{{serving_weight_grams}}" min="0" placeholder="{{serving_weight_grams}}">
+                <input type="number" onchange="onMealWeightChange()" value="{{serving_weight_grams}}" min="0"
+                    placeholder="{{serving_weight_grams}}">
 
                 <span>gr</span>
 
@@ -30,12 +31,6 @@
 
             </td>
 
-            <td>
-
-                <button id="calculate" class="btn btn-dark ">Calculate</button>
-
-            </td>
-
             <td class="totalCalories">
 
                 total calories: <span>0</span> kcal
@@ -45,7 +40,13 @@
 
         </tr>
     </table>
-    <a href="/meal/new" class="btn btn-dark btn-block btn-lg">Add this item to log</a>
+    <form action="/meal/new" method="post">
+        <input type="hidden" name="name" value="{{food_name}}">
+        <input type="hidden" id="amount_gr" name="amount_gr" value="">
+        <input type="hidden" id="kcal" name="kcal" value="">
+        <input type="hidden" name="image" value="{{photo.thumb}}">
+        <button type="submit" class="btn btn-dark btn-block btn-lg">Add this item to log</button>
+    </form>
 
     <script src="/javascripts/calculator.js"></script>
 </main>

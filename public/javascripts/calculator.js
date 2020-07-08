@@ -1,5 +1,5 @@
 
-function onCalculateButtonClick() {
+function onMealWeightChange() {
     console.log('traza', 'yo calculo las calorias')
     
     const weight = document.querySelector('#mealWeight input').value
@@ -12,15 +12,15 @@ function onCalculateButtonClick() {
     let totalCalories = (weight / serving) * calories
     
     document.querySelector('.totalCalories span').innerHTML = totalCalories
-    
+    document.querySelector('#kcal').value = totalCalories
+    document.querySelector('#amount_gr').value = weight
     return totalCalories
 };
 
 
-const calculateCaloriesBtn = document.getElementById('calculate')
-calculateCaloriesBtn.addEventListener('click', onCalculateButtonClick)
+// const calculateCaloriesBtn = document.getElementById('calculate')
+// calculateCaloriesBtn.addEventListener('click', onCalculateButtonClick)
 
 
-const weight = document.querySelector('#loQueTeVasAComerPutoGordo')
-console.log('traza', 'global', weight)
+
 
