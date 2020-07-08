@@ -10,21 +10,27 @@
 
             <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a>
 
-            {{#each registry}}
-            <h1>aqui deberia ir la fecha. {{date}}</h1>
-            {{/each}}
-
-
 
 
             {{#if errorMsg}}
             <div id="errorMsg">{{{errorMsg}}}</div>
             {{/if}}
         </form>
+
+
+
+        {{!-- DOM PARA AÑADIR LISTA DE MEALS NUEVOS --}}
+        <div class="mealContainer">
+            <div class='mealList'>
+                {{!-- <p>{{photo.thumb}}, {{food_name}}, {{serving_weight_grams}}, {{nf_calories}} </p> --}}
+            </div>
+        
+        
+        
+        </div>
+
+        {{!-- Vinculamos script con funciones --}}
+        <script src="/javascripts/mealsList.js"></script>
+
     </div>
 </div>
-
-{{!-- DOM PARA AÑADIR LISTA DE MEALS NUEVOS --}}
-{{!-- <div class='mealList'>
-    <p>{{photo.thumb}}, {{food_name}}, {{serving_weight_grams}}, {{nf_calories}} </p>
-</div> --}}
