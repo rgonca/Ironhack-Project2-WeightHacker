@@ -1,1 +1,0 @@
-const nutritionAPI = new APIHandler('http://localhost:3000')
