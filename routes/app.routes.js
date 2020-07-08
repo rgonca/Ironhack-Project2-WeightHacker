@@ -4,13 +4,13 @@ const router = express.Router()
 const axios = require('axios')
 const qs = require('qs')
 
-const Meal = require("../models/meal.model")
+// const Meal = require("../models/meal.model")
 const Registry = require("../models/registry.model")
 // const User = require("../models/user.model")
 
 
 
-router.get('/users/:userId/app', (req, res, next) => res.render('app/app'))
+router.get('/app', (req, res, next) => res.render('app/app'))
 //NECESITO HACER UNA LLAMADA AL ID DEL USUARIO
 router.post("/app/search", (req, res, next) => {
     console.log('formulario de busqueda', req.body)
@@ -46,28 +46,39 @@ router.post("/app/search", (req, res, next) => {
 router.get('/registry/new', (req, res) => res.render('app/registry'))
 
 router.post('/registry/new', (req, res, next) => {
-    const { owner, date } = req.body
-    Registry.create({ owner, date })
-    .then(registry => res.redirect(`/profile`))//ESTA RUTA DEBE CAMBIARSE LUEGO
+    const { date } = req.body
+    console.log('Nuestro log:',req.user)
+    Registry.create({ owner: req.user._id, date })
+    .then(registry => res.redirect('app/app'))
     .catch(err => next(new Error(err)))
     
+})
+
+//Muestra el registro en el cliente
+router.get('/app/registry', (req, res, next) => {
+    Registry.find()
+    // .populate('owner')
+    .then(registry => console.log('traza', registry)
+    // res.render('app/app', { registry })
+    )
+    .catch(err => next(new Error(err)))
 })
 
 //Crea una nueva comida
 //REVISAR RUTAS EN EL CLIENTE
-router.get('/meal/new', (req, res, next) => {
-    Registry.find() //  buscar registro por usuario??
-    .then(registry => res.render('app/meal', { registry }))
-    .catch(err => next(new Error(err)))
-    
-})
+// router.get('/meal/new', (req, res, next) => {
+//     Registry.find() //  buscar registro por usuario??
+//     .then(registry => res.render('app/meal', { registry }))
+//     .catch(err => next(new Error(err)))
 
-router.post('/meal/new', (req, res, next) => {
-    const { image, name, kcal, amount_gr } = req.body
-    Meal.create({ image, name, kcal, amount_gr })
-    .then(x => res.redirect('/profile'))
-    .catch(err => next(new Error(err)))
-})
+// })
+
+// router.post('/meal/new', (req, res, next) => {
+//     const { image, name, kcal, amount_gr } = req.body
+//     Meal.create({ image, name, kcal, amount_gr })
+//     .then(x => res.redirect('/profile'))
+//     .catch(err => next(new Error(err)))
+// })
 //Añade una comida a un registro existente
 //REVISAR RUTAS EN EL CLIENTE
 //Da error 404 pero aun asi no funciona
