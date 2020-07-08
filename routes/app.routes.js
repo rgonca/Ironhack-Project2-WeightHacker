@@ -47,7 +47,7 @@ router.post('/registry/new', (req, res, next) => {
     const { date } = req.body
     console.log('Nuestro log:',req.user)
     Registry.create({ owner: req.user._id, date })
-    .then(registry => res.redirect('app/app'))
+    .then(registry => res.redirect('/app'))
     .catch(err => next(new Error(err)))
     
 })
@@ -60,6 +60,15 @@ router.get('/app/registry', (req, res, next) => {
         return Registry.findById(req.query.registry)
     })
     .then((registry) => res.render('app/app', { registries, registry }))
+    .catch(err => next(new Error(err)))
+})
+//pushes a new meal into registry
+
+router.post('/app/registry', (req, res, next) => {
+    const { meals } = req.body
+    console.log('traza', 'micuerposerrano',req.body)
+    Registry.findByIdAndUpdate(req.params.id, { $push: {meals} })
+    .then(() => res.redirect(`/app/registry/${req.params.id}`))
     .catch(err => next(new Error(err)))
 })
 
