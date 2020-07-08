@@ -11,13 +11,17 @@ const Registry = require("../models/registry.model")
 
 
 router.get('/app', (req, res, next) => {
-    Registry.find()
-    .then(registries => res.render('app/app', { registries }))
+    console.log('traza', 'mi usuario', req.user.id)
+    Registry.find( {owner: req.user.id} )
+    .then(registries => {
+        console.log('traza', registries)
+        res.render('app/app', { registries })
+    })
     .catch(err => next(new Error(err)))
 })
 
 
-router.post("/app/search", (req, res, next) => {
+router.post("/app/registry", (req, res, next) => {
     console.log('formulario de busqueda', req.body)
     console.log('trazas', 'usuario', req.user)
     const options = {
@@ -35,7 +39,7 @@ router.post("/app/search", (req, res, next) => {
     .then(responseData => {
         const response = responseData.data.foods[0]
         console.log(response)
-        res.render("app/meal", response)
+        res.render("app/app", response)
     })
     .catch(error => next(error))
 })
@@ -46,16 +50,16 @@ router.get('/registry/new', (req, res) => res.render('app/registry'))
 router.post('/registry/new', (req, res, next) => {
     const { date } = req.body
     console.log('Nuestro log:',req.user)
-    Registry.create({ owner: req.user._id, date })
-    .then(registry => res.redirect('/app'))
+    Registry.create({ owner: req.user.id, date })
+    .then(registry => res.render('app/app', registry))
     .catch(err => next(new Error(err)))
     
 })
 //shows selected registry
 router.get('/app/registry', (req, res, next) => {
     let registries = []
-    Registry.find()
-    .then(foundRegistries => {
+    Registry.find({ owner: req.user.id })
+    .then(foundRegistries => {console.log(foundRegistries)
         registries = foundRegistries
         return Registry.findById(req.query.registry)
     })
@@ -71,27 +75,6 @@ router.post('/app/registry', (req, res, next) => {
     .then(() => res.redirect(`/app/registry/${req.params.id}`))
     .catch(err => next(new Error(err)))
 })
-
-
-
-
-//Crea una nueva comida
-//REVISAR RUTAS EN EL CLIENTE
-// router.get('/meal/new', (req, res, next) => {
-//     Registry.find() //  buscar registro por usuario??
-//     .then(registry => res.render('app/meal', { registry }))
-//     .catch(err => next(new Error(err)))
-
-// })
-
-// router.post('/meal/new', (req, res, next) => {
-//     const { image, name, kcal, amount_gr } = req.body
-//     Meal.create({ image, name, kcal, amount_gr })
-//     .then(x => res.redirect('/profile'))
-//     .catch(err => next(new Error(err)))
-// })
-
-
 
 module.exports = router
 

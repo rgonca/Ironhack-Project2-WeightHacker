@@ -2,19 +2,16 @@
     <div class="col-md-6">
 
 
-        <form action="/app/search" method="POST" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search"
-                aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-
-
-            <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a>
 
 
 
-            {{#if errorMsg}}
-            <div id="errorMsg">{{{errorMsg}}}</div>
-            {{/if}}
+        <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a>
+
+
+
+        {{#if errorMsg}}
+        <div id="errorMsg">{{{errorMsg}}}</div>
+        {{/if}}
         </form>
     </div>
 </div>
@@ -35,21 +32,75 @@
 {{#if registry}}
 <pre>{{registry}}</pre>
 {{/if}}
+<main>
+    <form action="/app/registry" method="POST" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        {{!-- <form action="/app/" method="POST" class="form-inline active-cyan-3 active-cyan-4"></form> --}}
+        <table>
+            <tr class="meal">
+                <td class="picture">
+                    <img src="{{photo.thumb}}" />
+                </td>
+                <td class="name">
+                    {{food_name}}
+                </td>
+
+                <td id="mealWeight">
+
+                    <input type="number" onchange="onMealWeightChange()" value="{{serving_weight_grams}}" min="0"
+                        placeholder="{{serving_weight_grams}}">
+
+                    <span>gr</span>
+
+                </td>
+
+                <td class="serving">
+
+                    Serving:<span>{{serving_weight_grams}}</span>gr
+
+                </td>
+
+                <td class="calories">
+
+                    serving:<span>{{nf_calories}}</span> kcal
+
+                </td>
+
+                <td class="totalCalories">
+
+                    total calories: <span>0</span> kcal
+
+                </td>
 
 
+            </tr>
+        </table>
+        <form action="/app/registry" method="post">
+            <input type="hidden" name="name" value="{{food_name}}">
+            <input type="hidden" id="amount_gr" name="amount_gr" value="">
+            <input type="hidden" id="kcal" name="kcal" value="">
+            <input type="hidden" name="image" value="{{photo.thumb}}">
+            <button type="submit" class="btn btn-dark btn-block btn-lg">Add this item to log</button>
+        </form>
 
-        {{!-- DOM PARA AÑADIR LISTA DE MEALS NUEVOS --}}
-        <div class="mealContainer">
-            <div class='mealList'>
-                {{!-- <p>{{photo.thumb}}, {{food_name}}, {{serving_weight_grams}}, {{nf_calories}} </p> --}}
-            </div>
-        
-        
-        
-        </div>
-
-        {{!-- Vinculamos script con funciones --}}
+        <script src="/javascripts/calculator.js"></script>
         <script src="/javascripts/mealsList.js"></script>
+</main>
 
+
+{{!-- DOM PARA AÑADIR LISTA DE MEALS NUEVOS --}}
+<div class="mealContainer">
+    <div class='mealList'>
+        {{!-- <p>{{photo.thumb}}, {{food_name}}, {{serving_weight_grams}}, {{nf_calories}} </p> --}}
     </div>
+
+
+
+</div>
+
+{{!-- Vinculamos script con funciones --}}
+<script src="/javascripts/mealsList.js"></script>
+
+</div>
 </div>
