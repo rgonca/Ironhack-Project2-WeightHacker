@@ -10,7 +10,11 @@ const Registry = require("../models/registry.model")
 
 
 
-router.get('/app', (req, res, next) => res.render('app/app'))
+router.get('/app', (req, res, next) => {
+    Registry.find()
+    .then(registries => res.render('app/app', { registries }))
+    .catch(err => next(new Error(err)))
+})
 //NECESITO HACER UNA LLAMADA AL ID DEL USUARIO
 router.post("/app/search", (req, res, next) => {
     console.log('formulario de busqueda', req.body)
@@ -55,14 +59,14 @@ router.post('/registry/new', (req, res, next) => {
 })
 
 //Muestra el registro en el cliente
-router.get('/app/registry', (req, res, next) => {
-    Registry.find()
-    // .populate('owner')
-    .then(registry => console.log('traza', registry)
-    // res.render('app/app', { registry })
-    )
-    .catch(err => next(new Error(err)))
-})
+// router.get('/app/registry', (req, res, next) => {
+//     Registry.find()
+//     // .populate('owner')
+//     .then(registry => console.log('traza', registry)
+//     // res.render('app/app', { registry })
+//     )
+//     .catch(err => next(new Error(err)))
+// })
 
 //Crea una nueva comida
 //REVISAR RUTAS EN EL CLIENTE

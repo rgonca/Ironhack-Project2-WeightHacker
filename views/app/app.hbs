@@ -10,12 +10,16 @@
 
             <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a>
 
-            {{#each registry}}
-            <h1>aqui deberia ir la fecha. {{date}}</h1>
-            {{/each}}
+            <div class="form-group">
+                <label for="park-list">Registries:</label>
+                <select name="registry" class="form-control" id="registries-list">
+                    <option>Select</option>
 
-
-
+                    {{#each registries}}
+                    <option value="{{_id}}">{{date}}</option>
+                    {{/each}}
+                </select>
+            </div>
 
             {{#if errorMsg}}
             <div id="errorMsg">{{{errorMsg}}}</div>
