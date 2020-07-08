@@ -10,16 +10,7 @@
 
             <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a>
 
-            <div class="form-group">
-                <label for="park-list">Registries:</label>
-                <select name="registry" class="form-control" id="registries-list">
-                    <option>Select</option>
 
-                    {{#each registries}}
-                    <option value="{{_id}}">{{date}}</option>
-                    {{/each}}
-                </select>
-            </div>
 
             {{#if errorMsg}}
             <div id="errorMsg">{{{errorMsg}}}</div>
@@ -27,6 +18,23 @@
         </form>
     </div>
 </div>
+<div class="form-group">
+    <form action="/app/registry" method="get">
+        <label for="registries">Registries:</label>
+        <select name="registry" class="form-control" id="registries-list">
+            <option>Select</option>
+
+            {{#each registries}}
+            <option value="{{_id}}">{{date}}</option>
+            {{/each}}
+        </select>
+        <button type="submit">Select</button>
+    </form>
+</div>
+
+{{#if registry}}
+<pre>{{registry}}</pre>
+{{/if}}
 
 {{!-- DOM PARA AÑADIR LISTA DE MEALS NUEVOS --}}
 {{!-- <div class='mealList'>
