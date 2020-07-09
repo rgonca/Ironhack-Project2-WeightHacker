@@ -41,6 +41,11 @@
 
         {{#if registry}}
 
+
+        {{!-- Iterar sobre objeto y array para ir pintando cada meal del registro en cada día --}}
+
+
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -50,19 +55,19 @@
                     <th scope="col">Amount</th>
                     <th scope="col">Serving</th>
                     <th scope="col">Kcal</th>
-                    <th scope="col">Total</th>
                 </tr>
             </thead>
+            {{#each registry.meals}}
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>{{registry.meals.image}}</td>
-                    <td>{{registry.meals.name}}</td>
-                    <td>{{registry.meals.amount_gr}}</td>
-                    <td>{{registry.meals.kcal}}</td>
+                    <td>{{@index}}: <img class="img-search" src=" {{image}}" alt="" srcset=""></td>
+                    <td>{{@index}}: {{name}}</td>
+                    <td>{{@index}}: {{amount_gr}}</td>
+                    <td>{{@index}}: {{kcal}}</td>
                 </tr>
-
             </tbody>
+            {{/each}}
+
         </table>
 
         <pre>{{registry}}</pre>
