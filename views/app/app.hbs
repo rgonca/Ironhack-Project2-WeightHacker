@@ -38,15 +38,35 @@
             </form>
         </div>
 
-        {{!-- <select class="mdb-select md-form">
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-    </select> --}}
 
         {{#if registry}}
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Serving</th>
+                    <th scope="col">Kcal</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{registry.meals.image}}</td>
+                    <td>{{registry.meals.name}}</td>
+                    <td>{{registry.meals.amount_gr}}</td>
+                    <td>{{registry.meals.kcal}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
         <pre>{{registry}}</pre>
+
         {{/if}}
 
     </div>
@@ -64,8 +84,8 @@
         </form>
     </div>
 
-   {{!-- cuidado aqui --}}
- {{#if meal}} 
+    {{!-- cuidado aqui --}}
+    {{#if meal}}
     <div class="col-md-6">
 
         <table class="table table-bordered table-search">
