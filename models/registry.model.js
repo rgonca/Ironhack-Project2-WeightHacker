@@ -3,10 +3,16 @@ const Schema = mongoose.Schema
 
 const registrySchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
-    date: String,
+    date: {
+        type: String,
+        required: true
+    },
     meals: [{
         image: String,
-        name: String,
+        name: {
+            type: String,
+            default: 'meal'
+        },
         amount_gr: Number,
         kcal: Number
     }]
@@ -17,9 +23,3 @@ const registrySchema = new Schema({
 const Registry = mongoose.model("Registry", registrySchema)
 
 module.exports = Registry
-
-// let ts = new Date()
-// console.log(ts.toDateString())
-
-
-// moment().format("MMM Do YY")
