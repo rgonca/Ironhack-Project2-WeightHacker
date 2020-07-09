@@ -1,9 +1,6 @@
 
 function onMealWeightChange() {
-    console.log('traza', 'yo calculo las calorias')
-
     const weight = document.querySelector('.mealWeight input').value
-    console.log('traza', weight)
     const calories = document.querySelector('.calories span').innerHTML
     const serving = document.querySelector('.serving span').innerHTML
 
@@ -17,6 +14,12 @@ function onMealWeightChange() {
     return totalCalories
 };
 
+
+function calorieCount() {
+    const calorieCounter = document.querySelectorAll(".allKcal").value
+    let totalKcal = calorieCounter.forEach(element => {((a, b) => a + b, 0)})
+    return totalKcal
+}
 
 // const calculateCaloriesBtn = document.getElementById('calculate')
 // calculateCaloriesBtn.addEventListener('click', onCalculateButtonClick)

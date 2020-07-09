@@ -49,9 +49,12 @@ document.getElementById('mealsListButton').addEventListener('click', (event) => 
 
 
 //Function to return daily kcal total
-const kcalTotal = (registry) => { //registry is an array of objects and we need to access the element kcal of each object
-    let kcalDaily = registry.filter((d) => d.kcal) // we create a new array with only the element kcal of all objects
-    return kcalDaily.reduce((a, b) => a + b, 0) // we sum all kcal together for the total kcal daily
+const kcalTotal = (registry) => {
+    registry.forEach(calories => {
+        //registry is an array of objects and we need to access the element kcal of each object
+        let kcalDaily = calories.filter((d) => d.kcal) // we create a new array with only the element kcal of all objects
+        return kcalDaily.reduce((a, b) => a + b, 0) // we sum all kcal together for the total kcal daily
+    })
 }
 
 

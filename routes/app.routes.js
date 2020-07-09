@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const axios = require('axios')
 const qs = require('qs')
+const moment = require('moment')
 
 const Registry = require("../models/registry.model")
 const User = require("../models/user.model")
@@ -11,10 +12,9 @@ const User = require("../models/user.model")
 router.get('/app', (req, res, next) => {
     console.log('MI USUARIO', req.user.id)
     Registry.find({
-            owner: req.user.id
-        })
+        owner: req.user.id
+    })
         .then(registries => {
-            console.log('traza', registries)
             res.render('app/app', {
                 registries
             })
@@ -29,11 +29,11 @@ router.post('/registry/new', (req, res, next) => {
     const {
         date
     } = req.body
-    console.log('Nuestro log:', req.user)
+
     Registry.create({
-            owner: req.user.id,
-            date
-        })
+        owner: req.user.id,
+        date: moment(date).format("MMM Do YY")
+    })
         .then(registry => res.render('app/app', registry))
         .then(registry => res.redirect('/app'))
         .catch(err => next(new Error(err)))
@@ -45,7 +45,6 @@ router.get('/app/registry', (req, res, next) => {
     let registry = {}
     Registry.find()
         .then(foundRegistries => {
-            console.log(foundRegistries)
             registries = foundRegistries
             return Registry.findById(req.query.registry)
         })
@@ -83,10 +82,10 @@ router.get('/app/registry', (req, res, next) => {
 //pushes a new meal into registry
 router.post('/app/registry', (req, res, next) => {
     Registry.findByIdAndUpdate(req.body.registryId, {
-            $push: {
-                meals: req.body
-            }
-        })
+        $push: {
+            meals: req.body
+        }
+    })
         .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
         .catch(err => next(new Error(err)))
 })
@@ -94,9 +93,9 @@ router.post('/app/registry', (req, res, next) => {
 router.post('/app/registry/delete', (req, res, next) => {
     Registry.findByIdAndUpdate(req.body.registryId,
         console.log(req.body), {
-        
-        })
-        // .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
-        // .catch(err => next(new Error(err)))
+
+    })
+    // .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
+    // .catch(err => next(new Error(err)))
 })
 module.exports = router

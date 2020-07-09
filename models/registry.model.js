@@ -3,11 +3,11 @@ const Schema = mongoose.Schema
 
 const registrySchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
-    date: Date,
+    date: String,
     meals: [{
         image: String,
-        name: String,       
-        amount_gr: Number,    
+        name: String,
+        amount_gr: Number,
         kcal: Number
     }]
 }, {
@@ -18,3 +18,8 @@ const Registry = mongoose.model("Registry", registrySchema)
 
 module.exports = Registry
 
+// let ts = new Date()
+// console.log(ts.toDateString())
+
+
+// moment().format("MMM Do YY")

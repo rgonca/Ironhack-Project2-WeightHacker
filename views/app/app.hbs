@@ -1,30 +1,33 @@
 <div class="row justify-content-center">
 
-    <div class="col-md-6">
-        <h2>Create new food log</h2>
 
-        <form action="/registry/new" method="POST">
-            {{!-- <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a> --}}
-            <div class="form-group">
-                <label for="date">Date</label>
-                <input type="date" id="date" name="date">
-            </div>
+    <div class="card" style="width: 60%;">
+        <div class="card-body">
+            <h2>Create new food log</h2>
 
-            <div type="hidden" class="form-group">
-                <label for="owner"></label>
-                <p value="{{user._id}}">{{name}}</p>
-            </div>
-            <button type="submit" class="btn btn-outline-success">Create log</button>
-        </form>
+            <form action="/registry/new" method="POST">
+                {{!-- <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a> --}}
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date">
+                </div>
+
+                <div type="hidden" class="form-group">
+                    <label for="owner"></label>
+                    <p value="{{user._id}}">{{name}}</p>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Create log</button>
+            </form>
+        </div>
     </div>
 
 
     {{!-- EL REGISTRO --}}
 
-    <div class="col-md-6">
+    <div class="card" style="width: 60%;">
+        <div class="card-body">
+            <h2>Select an existing log</h2>
 
-        <h2>Select an existing log</h2>
-        <div class="form-group">
             <form action="/app/registry" method="get">
                 <label for="registries">Registries:</label>
                 <select name="registry" class="mdb-select md-form" id="registries-list">
@@ -37,188 +40,126 @@
                 <button type="submit">Select</button>
             </form>
         </div>
-        <div class="col">
+    </div>
+
+
+    <div class="card" style="width: 60%;">
+        <div class="card-body">
             <h2>Search new item</h2>
             <form action="/app/registry?registry={{registry._id}}" method="GET" class="form-inline my-2 my-lg-0">
                 {{#if registry}}
                 <input type="hidden" name="registry" value="{{registry._id}}">
                 {{/if}}
-                <input class="active-cyan-3 active-cyan-4 mb-4" type="search" name="searchTerm" placeholder="Search"
-                    aria-label="Search">
+                <input class="active-cyan-3 active-cyan-4 mb-4 searchBarr" type="search" name="searchTerm"
+                    placeholder="Search" aria-label="Search">
                 {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
             </form>
         </div>
+    </div>
+</div>
 
-        {{!-- cuidado aqui --}}
-        {{#if meal}}
-        <div class="row align-items-start">
+{{!-- cuidado aqui --}}
+{{#if meal}}
+<div class="row align-items-start">
 
-            <table class="table table-bordered table-search">
-                <tr class="meal">
-                    <tbody>
-                        <tr>
-                            <td class="picture">
-                                <img class='img-search' src="{{meal.photo.thumb}}" />
-                            </td>
-
-                            <td class="name">
-                                {{meal.food_name}}
-                            </td>
-
-                            <td class="mealWeight">
-                                <input type="number" class="kcalbar" onchange="onMealWeightChange()"
-                                    value="{{meal.serving_weight_grams}}" min="0"
-                                    placeholder="{{meal.serving_weight_grams}}">
-                                <span>gr</span>
-                            </td>
-
-                            <td type="hidden" class="serving">
-                                Serving: <span>{{meal.serving_weight_grams}}</span> gr
-                            </td>
-
-                            <td type="hidden" class="calories">
-                                Kcal: <span>{{meal.nf_calories}}</span> kcal
-                            </td>
-
-                            <td class="totalCalories">
-                                Total: <span>{{meal.nf_calories}}</span> kcal
-                            </td>
-                        </tr>
-                    </tbody>
-                </tr>
-            </table>
-        </div>
-
-        {{!-- ADD MEALS TO REGISTRY --}}
-        <div class="col-md-6">
-            <form action="/app/registry" method="post">
-                <input type="hidden" name="registryId" value="{{registry._id}}">
-                <input type="hidden" name="name" value="{{meal.food_name}}">
-                <input type="hidden" id="amount_gr" name="amount_gr" value="">
-                <input type="hidden" id="kcal" name="kcal" value="">
-                <input type="hidden" name="image" value="{{meal.photo.thumb}}">
-                <button type="submit" id='mealsListButton' class="btn btn-outline-success my-2 my-sm-0">Add this item to
-                    log</button>
-            </form>
-        </div>
-
-        {{/if}}
-
-
-        {{#if registry}}
-        {{!-- Iterar sobre objeto y array para ir pintando cada meal del registro en cada día --}}
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Serving</th>
-                    <th scope="col">Kcal</th>
-                </tr>
-            </thead>
-
-            {{#each registry.meals}}
+    <table class="table table-bordered table-search">
+        <tr class="meal">
             <tbody>
                 <tr>
-                    <td> <img class="img-search" src=" {{image}}" alt="foodImage" srcset=""></td>
-                    <td>{{name}}</td>
-                    <td>{{amount_gr}}</td>
-                    <td>{{kcal}}</td>
-                    <td>
-                        <form action="/app/registry/delete" method="post">
-                            <input type="hidden" name="mealId" value="{{_id}}">
-                            <input type="hidden" id="image" name="image" value="{{image}}">
-                            <input type="hidden" id="name" name="name" value="{{name}}">
-                            <input type="hidden" id="amount_gr" name="amount_gr" value="{{amount_gr}}">
-                            <input type="hidden" id="kcal" name="kcal" value="{{kcal}}">
-                            <button type="submit">Delete</button>
-                        </form>
+                    <td class="picture">
+                        <img class='img-search' src="{{meal.photo.thumb}}" />
+                    </td>
+
+                    <td class="name">
+                        {{meal.food_name}}
+                    </td>
+
+                    <td class="mealWeight">
+                        <input type="number" class="kcalbar" onchange="onMealWeightChange()"
+                            value="{{meal.serving_weight_grams}}" min="0" placeholder="{{meal.serving_weight_grams}}">
+                        <span>gr</span>
+                    </td>
+
+                    <td type="hidden" class="serving">
+                        Serving: <span>{{meal.serving_weight_grams}}</span> gr
+                    </td>
+
+                    <td type="hidden" class="calories">
+                        Kcal: <span>{{meal.nf_calories}}</span> kcal
+                    </td>
+
+                    <td class="totalCalories">
+                        Total: <span>{{meal.nf_calories}}</span> kcal
                     </td>
                 </tr>
             </tbody>
-            {{/each}}
+        </tr>
+    </table>
+</div>
 
-        </table>
+{{!-- ADD MEALS TO REGISTRY --}}
+<div class="col-md-6">
+    <form action="/app/registry" method="post">
+        <input type="hidden" name="registryId" value="{{registry._id}}">
+        <input type="hidden" name="name" value="{{meal.food_name}}">
+        <input type="hidden" id="amount_gr" name="amount_gr" value="">
+        <input type="hidden" id="kcal" name="kcal" value="">
+        <input type="hidden" name="image" value="{{meal.photo.thumb}}">
+        <button type="submit" id='mealsListButton' class="btn btn-outline-success my-2 my-sm-0">Add this
+            item to
+            log</button>
+    </form>
+</div>
 
-        <pre>{{registry}}</pre>
-
-        {{/if}}
-
-    </div>
+{{/if}}
 
 
-<<<<<<< HEAD
-=======
-    <div class="col-md-6">
-        <h2>Search new item</h2>
-        <form action="/app/registry?registry={{registry._id}}" method="GET" class="form-inline my-2 my-lg-0">
-            {{#if registry}}
-            <input type="hidden" name="registry" value="{{registry._id}}">
-            {{/if}}
-            <input class="active-cyan-3 active-cyan-4 mb-4" type="search" name="searchTerm" placeholder="Search"
-                aria-label="Search">
-            {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
-        </form>
-    </div>
+{{#if registry}}
+{{!-- Iterar sobre objeto y array para ir pintando cada meal del registro en cada día --}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Item</th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Serving</th>
+            <th scope="col">Kcal</th>
+        </tr>
+    </thead>
 
-    {{!-- cuidado aqui --}}
-    {{#if meal}}
-    <div class="col-md-6">
+    {{#each registry.meals}}
+    <tbody>
+        <tr>
+            <td> <img class="img-search" src=" {{image}}" alt="foodImage" srcset=""></td>
+            <td>{{name}}</td>
+            <td>{{amount_gr}}</td>
+            <td class="allKcal">{{kcal}}</td>
+            <td>
+                <form action="/app/registry/delete" method="post">
+                    <input type="hidden" name="mealId" value="{{_id}}">
+                    <input type="hidden" id="image" name="image" value="{{image}}">
+                    <input type="hidden" id="name" name="name" value="{{name}}">
+                    <input type="hidden" id="amount_gr" name="amount_gr" value="{{amount_gr}}">
+                    <input type="hidden" id="kcal" name="kcal" value="{{kcal}}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            {{!-- <td><input type="number" class="" onchange="kcalTotal()" value="" min="0" placeholder="{{kcal}}"></td> --}}
+        </tr>
+    </tbody>
+    {{/each}}
 
-        <table class="table table-bordered table-search">
-            <tr class="meal">
-                <tbody>
-                    <tr>
-                        <td class="picture">
-                            <img class='img-search' src="{{meal.photo.thumb}}" />
-                        </td>
+</table>
 
-                        <td class="name">
-                            {{meal.food_name}}
-                        </td>
+<pre>{{registry}}</pre>
 
-                        <td id="mealWeight">
-                            <input type="number" class="kcalbar" onchange="onMealWeightChange()"
-                                value="{{meal.serving_weight_grams}}" min="0"
-                                placeholder="{{meal.serving_weight_grams}}">
-                            <span>gr</span>
-                        </td>
+{{/if}}
 
-                        <td type="hidden" class="serving">
-                            Serving: <span>{{meal.serving_weight_grams}}</span> gr
-                        </td>
+</div>
+</div>
 
-                        <td type="hidden" class="calories">
-                            Kcal: <span>{{meal.nf_calories}}</span> kcal
-                        </td>
-
-                        <td class="totalCalories">
-                            Total: <span>{{meal.nf_calories}}</span> kcal
-                        </td>
-                    </tr>
-                </tbody>
-            </tr>
-        </table>
-    </div>
-
-    {{!-- ADD MEALS TO REGISTRY --}}
-    <div class="col-md-6">
-        <form action="/app/registry" method="post">
-            <input type="hidden" name="registryId" value="{{registry._id}}">
-            <input type="hidden" name="name" value="{{meal.food_name}}">
-            <input type="hidden" id="amount_gr" name="amount_gr" value="">
-            <input type="hidden" id="kcal" name="kcal" value="">
-            <input type="hidden" name="image" value="{{meal.photo.thumb}}">
-            <button type="submit" id='mealsListButton' class="btn btn-outline-success my-2 my-sm-0">Add this item to
-                log</button>
-        </form>
-    </div>
-
-    {{/if}}
->>>>>>> 5914929f65eb02a46795899f311ede7443006635
-
+</div>
 
 </div>
 <script src="/javascripts/calculator.js"></script>
