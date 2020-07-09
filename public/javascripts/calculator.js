@@ -2,7 +2,7 @@
 function onMealWeightChange() {
     console.log('traza', 'yo calculo las calorias')
 
-    const weight = document.querySelector('#mealWeight input').value
+    const weight = document.querySelector('.mealWeight input').value
     console.log('traza', weight)
     const calories = document.querySelector('.calories span').innerHTML
     const serving = document.querySelector('.serving span').innerHTML

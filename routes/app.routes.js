@@ -10,10 +10,14 @@ const User = require("../models/user.model")
 
 router.get('/app', (req, res, next) => {
     console.log('MI USUARIO', req.user.id)
-    Registry.find({ owner: req.user.id })
+    Registry.find({
+            owner: req.user.id
+        })
         .then(registries => {
             console.log('traza', registries)
-            res.render('app/app', { registries })
+            res.render('app/app', {
+                registries
+            })
         })
         .catch(err => next(new Error(err)))
 })
@@ -22,9 +26,14 @@ router.get('/app', (req, res, next) => {
 // router.get('/registry/new', (req, res) => res.render('app/app'))
 //por arreglar
 router.post('/registry/new', (req, res, next) => {
-    const { date } = req.body
+    const {
+        date
+    } = req.body
     console.log('Nuestro log:', req.user)
-    Registry.create({ owner: req.user.id, date })
+    Registry.create({
+            owner: req.user.id,
+            date
+        })
         .then(registry => res.render('app/app', registry))
         .then(registry => res.redirect('/app'))
 
@@ -43,7 +52,9 @@ router.get('/app/registry', (req, res, next) => {
         })
         .then((foundRegistry) => {
             registry = foundRegistry
-            const { searchTerm } = req.query
+            const {
+                searchTerm
+            } = req.query
             if (!searchTerm) {
                 return null
             }
@@ -54,25 +65,39 @@ router.get('/app/registry', (req, res, next) => {
                     "x-app-id": `d4780a4b`,
                     "x-app-key": `1db1f17052ecb8cd9890644962072817`
                 },
-                data: qs.stringify({ query: searchTerm }),
+                data: qs.stringify({
+                    query: searchTerm
+                }),
                 url: 'https://trackapi.nutritionix.com/v2/natural/nutrients'
             }
             return axios(options).then(responseData => responseData.data.foods[0])
 
         })
-        .then(meal => res.render('app/app', { registries, registry, meal }))
+        .then(meal => res.render('app/app', {
+            registries,
+            registry,
+            meal
+        }))
         .catch(err => next(new Error(err)))
 })
 
 //pushes a new meal into registry
 router.post('/app/registry', (req, res, next) => {
     Registry.findByIdAndUpdate(req.body.registryId, {
-        $push: {
-            meals: req.body
-        }
-    })
+            $push: {
+                meals: req.body
+            }
+        })
         .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
         .catch(err => next(new Error(err)))
 })
-
+//splices a new meal out of the registry
+router.post('/app/registry/delete', (req, res, next) => {
+    Registry.findByIdAndUpdate(req.body.registryId,
+        console.log(req.body), {
+        
+        })
+        // .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
+        // .catch(err => next(new Error(err)))
+})
 module.exports = router
