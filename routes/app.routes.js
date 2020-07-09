@@ -13,7 +13,7 @@ router.get('/app', (req, res, next) => {
     console.log('MI USUARIO', req.user.id)
     Registry.find({ owner: req.user.id })
         .then(registries => {
-            console.log('traza', registries)
+            console.log('Registries:', registries)
             res.render('app/app', { registries })
         })
         .catch(err => next(new Error(err)))
@@ -45,25 +45,25 @@ router.get('/registry/new', (req, res) => res.render('app/app'))
 
 router.post('/registry/new', (req, res, next) => {
     const { date } = req.body
-    console.log('Nuestro log:', req.user)
+    console.log('Creates new log for this user:', req.user)
     Registry.create({ owner: req.user.id, date })
         .then(registry => res.render('app/app', registry))
         .then(() => res.redirect('/app'))
         .catch(err => next(new Error(err)))
 
 })
-//shows selected registry
-// router.get('/app/registry', (req, res, next) => {
-//     let registries = []
-//     Registry.find({ owner: req.user.id })
-//         .then(foundRegistries => {
-//             // console.log('FOUND REGISTRIES', foundRegistries)
-//             registries = foundRegistries
-//             return Registry.findById(req.query.registry)
-//         })
-//         .then((registry) => res.render('app/app', { registries, registry }))
-//         .catch(err => next(new Error(err)))
-// })
+// shows selected registry
+router.get('/app/registry', (req, res, next) => {
+    let registries = []
+    Registry.find({ owner: req.user.id })
+        .then(foundRegistries => {
+            // console.log('FOUND REGISTRIES', foundRegistries)
+            registries = foundRegistries
+            return Registry.findById(req.query.registry)
+        })
+        .then((registry) => res.render('app/app', { registries, registry }))
+        .catch(err => next(new Error(err)))
+})
 
 //pushes a new meal into registry (NO FUNCIONA)
 // router.post('/app/registry', (req, res, next) => {
