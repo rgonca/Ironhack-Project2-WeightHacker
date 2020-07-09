@@ -13,11 +13,11 @@ const Registry = require("../models/registry.model")
 router.get('/app', (req, res, next) => {
     console.log('traza', 'mi usuario', req.user.id)
     Registry.find({ owner: req.user.id })
-        .then(registries => {
-            console.log('traza', registries)
-            res.render('app/app', { registries })
-        })
-        .catch(err => next(new Error(err)))
+    .then(registries => {
+        console.log('traza', registries)
+        res.render('app/app', { registries })
+    })
+    .catch(err => next(new Error(err)))
 })
 
 
@@ -33,12 +33,12 @@ router.post("/app/registry", (req, res, next) => {
         url: 'https://trackapi.nutritionix.com/v2/natural/nutrients'
     }
     axios(options)
-        .then(responseData => {
-            const response = responseData.data.foods[0]
-            console.log(response)
-            res.render("app/app", response)
-        })
-        .catch(error => next(error))
+    .then(responseData => {
+        const response = responseData.data.foods[0]
+        console.log(response)
+        res.render("app/app", response)
+    })
+    .catch(error => next(error))
 })
 
 //Creates a new registry
@@ -48,21 +48,21 @@ router.post('/registry/new', (req, res, next) => {
     const { date } = req.body
     console.log('Nuestro log:', req.user)
     Registry.create({ owner: req.user.id, date })
-        .then(registry => res.render('app/app', registry))
-        .catch(err => next(new Error(err)))
-
+    .then(registry => res.render('app/app', registry))
+    .catch(err => next(new Error(err)))
+    
 })
 //shows selected registry
 router.get('/app/registry', (req, res, next) => {
     let registries = []
-    Registry.find({ owner: req.user.id })
-        .then(foundRegistries => {
-            console.log(foundRegistries)
-            registries = foundRegistries
-            return Registry.findById(req.query.registry)
-        })
-        .then((registry) => res.render('app/app', { registries, registry }))
-        .catch(err => next(new Error(err)))
+    Registry.find()
+    .then(foundRegistries => {
+        console.log(foundRegistries)
+        registries = foundRegistries
+        return Registry.findById(req.query.registry)
+    })
+    .then((registry) => res.render('app/app', { registries, registry }))
+    .catch(err => next(new Error(err)))
 })
 
 //pushes a new meal into registry (NO FUNCIONA)
@@ -70,8 +70,8 @@ router.post('/app/registry', (req, res, next) => {
     const { meals } = req.body
     console.log('traza', 'micuerposerrano', req.body)
     Registry.findByIdAndUpdate(req.params.id, { $push: { meals } })
-        .then(() => res.redirect(`/app/registry/${req.params.id}`))
-        .catch(err => next(new Error(err)))
+    .then(() => res.redirect(`/app/registry/${req.params.id}`))
+    .catch(err => next(new Error(err)))
 })
 
 module.exports = router
