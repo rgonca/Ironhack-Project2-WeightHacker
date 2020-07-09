@@ -26,6 +26,19 @@ h1, h2, h3 {
   padding: 10px 0;
   margin-top: 5px; }
 
+.btn-app {
+  width: 30%;
+  font-size: smaller; }
+
+.kcalbar {
+  width: 50%; }
+
+.img-search {
+  width: 40%; }
+
+.table-search {
+  font-size: smaller; }
+
 .foot {
   position: absolute;
   bottom: 0;
