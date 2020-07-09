@@ -3,11 +3,17 @@ const Schema = mongoose.Schema
 
 const registrySchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
-    date: Date,
+    date: {
+        type: String,
+        required: true
+    },
     meals: [{
         image: String,
-        name: String,       
-        amount_gr: Number,    
+        name: {
+            type: String,
+            default: 'meal'
+        },
+        amount_gr: Number,
         kcal: Number
     }]
 }, {
@@ -17,4 +23,3 @@ const registrySchema = new Schema({
 const Registry = mongoose.model("Registry", registrySchema)
 
 module.exports = Registry
-
