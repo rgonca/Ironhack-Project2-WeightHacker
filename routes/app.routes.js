@@ -41,16 +41,15 @@ router.post("/app/registry", (req, res, next) => {
 })
 
 //Creates a new registry
-router.get('/registry/new', (req, res) => res.render('app/app'))
-
+// router.get('/registry/new', (req, res) => res.render('app/app'))
+//por arreglar
 router.post('/registry/new', (req, res, next) => {
     const { date } = req.body
     console.log('Creates new log for this user:', req.user)
     Registry.create({ owner: req.user.id, date })
-        .then(registry => res.render('app/app', registry))
-        .then(() => res.redirect('/app'))
-        .catch(err => next(new Error(err)))
-
+    .then(registry => res.render('app/app', registry))
+    .catch(err => next(new Error(err)))
+    
 })
 // shows selected registry
 router.get('/app/registry', (req, res, next) => {
@@ -66,13 +65,15 @@ router.get('/app/registry', (req, res, next) => {
 })
 
 //pushes a new meal into registry (NO FUNCIONA)
-// router.post('/app/registry', (req, res, next) => {
-//     const { meals } = req.body
-//     // console.log('traza', req.body)
-//     Registry.findByIdAndUpdate(req.params.id, { $push: { meals } })
-//         .then(() => res.redirect(`/app/registry/${req.params.id}`))
-//         .catch(err => next(new Error(err)))
-// })
+router.post('/app/registry', (req, res, next) => {
+    Registry.findByIdAndUpdate( req.body.registryId, {
+        $push: {
+            meals : req.body
+        }
+    })
+    .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
+    .catch(err => next(new Error(err)))
+})
 
 module.exports = router
 
