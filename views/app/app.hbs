@@ -119,26 +119,32 @@
                 </tr>
             </thead>
 
-            {{#each registry.meals}}
+
+
             <tbody>
-                <tr>
-                    <td> <img class="img-search" src=" {{image}}" alt="foodImage" srcset=""></td>
-                    <td>{{name}}</td>
-                    <td>{{amount_gr}}</td>
-                    <td>{{kcal}}</td>
-                    <td>
-                        <form action="/app/registry/delete" method="post">
-                            <input type="hidden" name="mealId" value="{{_id}}">
+                <form action="/app/registry/delete" method="post">
+                    <input type="hidden" name="registryId" value="{{registry.id}}">
+                    {{#each registry.meals}}
+                    <tr>
+                        <td> <img class="img-search" src=" {{image}}" alt="foodImage" srcset=""></td>
+                        <td>{{name}}</td>
+                        <td>{{amount_gr}}</td>
+                        <td>{{kcal}}</td>
+                        <td>
+
+                            <input type="checkbox" id="mealId" name="mealId" value="{{_id}}">
                             <input type="hidden" id="image" name="image" value="{{image}}">
                             <input type="hidden" id="name" name="name" value="{{name}}">
                             <input type="hidden" id="amount_gr" name="amount_gr" value="{{amount_gr}}">
                             <input type="hidden" id="kcal" name="kcal" value="{{kcal}}">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    <button type="submit" class="" id="deleteBtn">Delete</button>
+
+                </form>
             </tbody>
-            {{/each}}
+
 
         </table>
 
@@ -147,78 +153,6 @@
         {{/if}}
 
     </div>
-
-
-<<<<<<< HEAD
-=======
-    <div class="col-md-6">
-        <h2>Search new item</h2>
-        <form action="/app/registry?registry={{registry._id}}" method="GET" class="form-inline my-2 my-lg-0">
-            {{#if registry}}
-            <input type="hidden" name="registry" value="{{registry._id}}">
-            {{/if}}
-            <input class="active-cyan-3 active-cyan-4 mb-4" type="search" name="searchTerm" placeholder="Search"
-                aria-label="Search">
-            {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
-        </form>
-    </div>
-
-    {{!-- cuidado aqui --}}
-    {{#if meal}}
-    <div class="col-md-6">
-
-        <table class="table table-bordered table-search">
-            <tr class="meal">
-                <tbody>
-                    <tr>
-                        <td class="picture">
-                            <img class='img-search' src="{{meal.photo.thumb}}" />
-                        </td>
-
-                        <td class="name">
-                            {{meal.food_name}}
-                        </td>
-
-                        <td id="mealWeight">
-                            <input type="number" class="kcalbar" onchange="onMealWeightChange()"
-                                value="{{meal.serving_weight_grams}}" min="0"
-                                placeholder="{{meal.serving_weight_grams}}">
-                            <span>gr</span>
-                        </td>
-
-                        <td type="hidden" class="serving">
-                            Serving: <span>{{meal.serving_weight_grams}}</span> gr
-                        </td>
-
-                        <td type="hidden" class="calories">
-                            Kcal: <span>{{meal.nf_calories}}</span> kcal
-                        </td>
-
-                        <td class="totalCalories">
-                            Total: <span>{{meal.nf_calories}}</span> kcal
-                        </td>
-                    </tr>
-                </tbody>
-            </tr>
-        </table>
-    </div>
-
-    {{!-- ADD MEALS TO REGISTRY --}}
-    <div class="col-md-6">
-        <form action="/app/registry" method="post">
-            <input type="hidden" name="registryId" value="{{registry._id}}">
-            <input type="hidden" name="name" value="{{meal.food_name}}">
-            <input type="hidden" id="amount_gr" name="amount_gr" value="">
-            <input type="hidden" id="kcal" name="kcal" value="">
-            <input type="hidden" name="image" value="{{meal.photo.thumb}}">
-            <button type="submit" id='mealsListButton' class="btn btn-outline-success my-2 my-sm-0">Add this item to
-                log</button>
-        </form>
-    </div>
-
-    {{/if}}
->>>>>>> 5914929f65eb02a46795899f311ede7443006635
-
 
 </div>
 <script src="/javascripts/calculator.js"></script>
