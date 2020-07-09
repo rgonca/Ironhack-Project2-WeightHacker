@@ -64,7 +64,7 @@ router.get('/app/registry', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
-//pushes a new meal into registry (NO FUNCIONA)
+//pushes a new meal into registry
 router.post('/app/registry', (req, res, next) => {
     Registry.findByIdAndUpdate(req.body.registryId, {
         $push: {
