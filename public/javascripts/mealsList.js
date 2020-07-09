@@ -59,6 +59,16 @@ function removeMealButtonClick() {
     return console.log('chupalo')
         // event.preventDefault()
 
+<<<<<<< HEAD
+=======
+//Function to return daily kcal total
+const kcalTotal = (registry) => {
+    registry.forEach(calories => {
+        //registry is an array of objects and we need to access the element kcal of each object
+        let kcalDaily = calories.filter((d) => d.kcal) // we create a new array with only the element kcal of all objects
+        return kcalDaily.reduce((a, b) => a + b, 0) // we sum all kcal together for the total kcal daily
+    })
+>>>>>>> ffa7287e9d60f77fe4d769a4d89b26c911eb2bbb
 }
 
 const deleteMealButton = document.querySelectorAll('deleteBtn')

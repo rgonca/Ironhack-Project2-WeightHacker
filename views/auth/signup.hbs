@@ -18,10 +18,10 @@
                 <input type="text" name="name" id="name">
             </div>
 
-            <div class="form-group">
+            {{!-- <div class="form-group">
                 <label for="avatar">Choose a profile picture:</label>
                 <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <p>Sex:</p>
@@ -40,7 +40,7 @@
                 <input type="number" name="targetWeight">
             </div>
 
-            <button type="submit" class="btn btn-dark btn-block btn-lg">Sign up</button>
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Sign up</button>
 
             {{#if errorMsg}}
             <div id="errorMsg">{{{errorMsg}}}</div>
