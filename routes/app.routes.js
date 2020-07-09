@@ -27,7 +27,6 @@ router.post('/registry/new', (req, res, next) => {
     Registry.create({ owner: req.user.id, date })
         .then(registry => res.render('app/app', registry))
         .then(registry => res.redirect('/app'))
-
         .catch(err => next(new Error(err)))
 
 })

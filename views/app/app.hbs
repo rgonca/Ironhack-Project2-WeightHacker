@@ -40,12 +40,7 @@
 
 
         {{#if registry}}
-
-
         {{!-- Iterar sobre objeto y array para ir pintando cada meal del registro en cada día --}}
-
-
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -57,6 +52,7 @@
                     <th scope="col">Kcal</th>
                 </tr>
             </thead>
+
             {{#each registry.meals}}
             <tbody>
                 <tr>
@@ -144,15 +140,6 @@
 
     {{/if}}
 
-    {{!-- CONTAINERS PARA CLONAR Y PINTAR LISTA DE MEALS NUEVOS --}}
-
-    <div class="col-md-6">
-        <div class="mealContainer">
-            <div class='mealList'>
-                {{!-- <p>{{photo.thumb}}, {{food_name}}, {{serving_weight_grams}}, {{nf_calories}} </p> --}}
-            </div>
-        </div>
-    </div>
 
 </div>
 <script src="/javascripts/calculator.js"></script>
