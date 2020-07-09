@@ -2,14 +2,23 @@ body {
   font-weight: 200;
   background-image: url(./../images/lauren-mancke-sil2Hx4iupI-unsplash.jpg);
   background-size: 100%;
+  height: 100%;
   background-repeat: repeat;
+  background-size: cover;
   font-family: Quicksand; }
 
 h1, h2, h3 {
   font-weight: 200; }
 
 .navbar {
-  margin-bottom: 70px; }
+  margin-bottom: 70px;
+  width: 10; }
+
+.navbar-dark .navbar-nav .nav-link {
+  color: black; }
+
+.navbar.navbar-3 .navbar-toggler-icon {
+  background-image: url("https://mdbootstrap.com/img/svg/hamburger1.svg?color=6a1b9a"); }
 
 .navicon {
   width: 110%; }
@@ -38,6 +47,9 @@ h1, h2, h3 {
 
 .table-search {
   font-size: smaller; }
+
+.card {
+  color: black; }
 
 .foot {
   position: absolute;

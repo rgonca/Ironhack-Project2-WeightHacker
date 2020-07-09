@@ -1,12 +1,34 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
+        <div class="card" style="width: 60%;">
+            <img src="/images/FAVPNG_social-media-user-person-image_QqsS5nbA.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Hi there, {{user.name}}!</h5>
+                <p class="card-text">Here you can edit your profile or go ahead and check your logs.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Initial weight: {{user.initialWeight}} Kg</li>
+                <li class="list-group-item">Target weight: {{user.targetWeight}} Kg</li>
+            </ul>
+            <div class="card-body">
+                <a href="/users/{{user._id}}" class="btn btn-outline-success">Edit profile</a>
+                <a href="/app" class="btn btn-outline-success">Get started</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{!-- <div class="row justify-content-center">
+    <div class="col-md-6">
 
 
 
         <h2>Hi there, {{user.name}}!</h2>
         <img src="{{user.avatar}}">
         {{!-- <h3>Sex: {{user.sex}}</h3> --}}
-        <h4>Initial weight: {{user.initialWeight}} Kg</h4>
+{{!-- <h4>Initial weight: {{user.initialWeight}} Kg</h4>
         <h4>Target weight: {{user.targetWeight}} Kg</h4>
 
         <br>
@@ -15,7 +37,7 @@
         <a href="/app" class="btn btn-dark btn-block btn-lg">Get started</a>
 
     </div>
-</div>
+</div> --}}
 
 
 

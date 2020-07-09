@@ -36,7 +36,6 @@ router.post('/registry/new', (req, res, next) => {
         })
         .then(registry => res.render('app/app', registry))
         .then(registry => res.redirect('/app'))
-
         .catch(err => next(new Error(err)))
 
 })

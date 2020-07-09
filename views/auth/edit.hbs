@@ -1,11 +1,13 @@
-<form action="/users/{{user._id}}" method="POST">
+<form action="/users/{{user._id}}" method="POST"></form>
+<div class="card" style="width: 60%;">
 
-    <div class="form-group">
+
+    {{!-- <div class="form-group">
         <label for="avatar">Choose a profile picture:</label>
         <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-    </div>
+    </div> --}}
 
-    <div class="form-group">
+    <div class="card-body">
         <p>Sex:</p>
         <input type="radio" id="male" name="sex" value="male">
         <label for="male">Male</label><br>
@@ -13,10 +15,11 @@
         <label for="female">Female</label><br>
     </div>
 
-    <div class="form-group">
+    <div class="card-body">
         <label for="targetweight">Target weight in kg:</label>
         <input type="number" id="targetweight" name="targetweight">
     </div>
-    <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
 
+</div>
+<button type="submit" class="btn btn-outline-success">Submit</button>
 </form>
