@@ -23,6 +23,9 @@ h1, h2, h3 {
 .navicon {
   width: 110%; }
 
+.searchBarr {
+  width: 20%; }
+
 .logo {
   width: 50%;
   position: fixed; }
