@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label for="date">Date</label>
                     <input type="date" id="date" name="date">
-                    <button type="submit" class="btn btn-outline-success">Create log</button>
+                    <button type="submit" class="btn btn-outline-success">Create</button>
                 </div>
 
                 {{!-- <div type="hidden" class="form-group">
@@ -56,9 +56,9 @@
                 {{#if registry}}
                 <input type="hidden" name="registry" value="{{registry._id}}">
                 {{/if}}
-                <input class="active-cyan-3 active-cyan-4 mb-4 searchBarr" type="search" name="searchTerm"
+                <input class="navbar navbar-light bg-light searchBarr" type="search" name="searchTerm"
                     placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
             </form>
         </div>
     </div>
