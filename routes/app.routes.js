@@ -88,26 +88,21 @@ router.post('/app/registry', (req, res, next) => {
 })
 //splices a new meal out of the registry
 router.post('/app/registry/delete', (req, res, next) => {
-    let mealSelected = []
 
-    if (typeof (req.body.mealId) === 'string') {
-        mealSelected.push(req.body.mealId)
-    } else {
-        mealSelected = req.body.mealId
-    }
-    mealSelected.forEach(meal => {
-        Registry.findByIdAndUpdate(req.body.registryId, {
-                    $pullAll: {
-                        meals: [meal]
+    Registry.findByIdAndUpdate(req.body.registryId, {
+                $pull: {
+                    meals: {
+                        _id: req.body.mealId
                     }
-                }, {
-                    new: true
                 }
+            }, {
+                new: true
+            }
 
-            )
-            .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
-            .catch(err => next(new Error(err)))
-    })
+        )
+        .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
+        .catch(err => next(new Error(err)))
+
 });
 
 
