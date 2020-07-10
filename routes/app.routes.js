@@ -22,8 +22,6 @@ router.get('/app', (req, res, next) => {
 })
 
 //Creates a new registry
-// router.get('/registry/new', (req, res) => res.render('app/app'))
-//por arreglar
 router.post('/registry/new', (req, res, next) => {
     const {
         date
@@ -33,7 +31,7 @@ router.post('/registry/new', (req, res, next) => {
             date: moment(date).format("MMM Do YY")
         })
         .then(registry => res.render('app/app', registry))
-        .then(registry => res.redirect('/app'))
+        .then((registry) => res.redirect('/app'))
         .catch(err => next(new Error(err)))
 
 })

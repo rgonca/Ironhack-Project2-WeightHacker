@@ -13,18 +13,19 @@ router.get("/profile", (req, res) => res.render("auth/profile"))
 
 router.get("/users/:userId", (req, res, next) => {
     User.findById(req.params.userId)
-    .then((user) => res.render("auth/edit", {user}))
-    .catch(err => next(new Error(err)))
-    
+        .then((user) => res.render("auth/edit", { user }))
+        .catch(err => next(new Error(err)))
+
 })
 
 
 router.post('/users/:userId', (req, res, next) => {
-    const { name, avatar, sex, targetWeight } = req.body
+    const { sex, targetWeight } = req.body
     console.log('traza', req.body)
-    User.update({_id: req.params.userId}, { name, avatar, sex, targetWeight })
-    .then(() => res.redirect(`/profile`))
-    .catch (err => next(new Error(err)))    
+    User.update({ _id: req.params.userId }, { sex, targetWeight })
+        .then(user => res.render('auth/profile'))
+        .then(() => res.redirect('/profile'))
+        .catch(err => next(new Error(err)))
 })
 
 
