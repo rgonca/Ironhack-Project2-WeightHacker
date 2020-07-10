@@ -30,7 +30,6 @@ router.post('/registry/new', (req, res, next) => {
         owner: req.user.id,
         date: moment(date).format("MMM Do YY")
     })
-        // .then(registry => res.render('app/app', registry))
         .then(() => res.redirect('/app'))
         .catch(err => next(new Error(err)))
 
