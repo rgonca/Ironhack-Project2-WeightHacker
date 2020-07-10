@@ -3,7 +3,7 @@
 
     <div class="card" style="width: 60%;">
         <div class="card-body">
-            <h3>Create new food log</h3>
+            <h4>Create new food log</h4>
 
             <form action="/registry/new" method="POST">
                 {{!-- <a href="/registry/new" class="btn btn-dark btn-block btn-lg">Create new log</a> --}}
@@ -31,7 +31,7 @@
 
     <div class="card" style="width: 60%;">
         <div class="card-body">
-            <h3>Select an existing log</h3>
+            <h4>Select an existing log</h4>
 
             <form action="/app/registry" method="get">
                 <label for="registries">Registries:</label>
@@ -51,7 +51,7 @@
 
     <div class="card" style="width: 60%;">
         <div class="card-body">
-            <h3>Add item to log</h3>
+            <h4>Add item to log</h4>
             <form action="/app/registry?registry={{registry._id}}" method="GET" class="form-inline my-2 my-lg-0">
                 {{#if registry}}
                 <input type="hidden" name="registry" value="{{registry._id}}">
@@ -119,7 +119,7 @@
 <div class="row justify-content-center">
     <div class="card" style="width: 60%;">
         <div class="row justify-content-center">
-            <h3><span class="calorieCount">0</span>/<span>1500</span> total intake</h3>
+            <h5><span class="calorieCount">0</span>/<span>1500</span> kcal total </h5>
             <button type="submit" class="btn btn-outline-success" id="counter">Calculate</button>
         </div>
     </div>
@@ -148,7 +148,7 @@
                 <td> <img class="img-search" src=" {{image}}" alt="foodImage" srcset=""></td>
                 <td>{{name}}</td>
                 <td>{{amount_gr}} gr</td>
-                <td class="kcalToCount"><span>{{kcal}}</span>kcal</td>
+                <td class="kcalToCount"><span>{{kcal}}</span> kcal</td>
                 <td>
                     <input type="checkbox" id="mealId" name="mealId" value="{{_id}}">
                 </td>

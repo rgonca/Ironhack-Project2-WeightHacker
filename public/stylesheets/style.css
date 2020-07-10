@@ -20,6 +20,9 @@ h1, h2, h3 {
 .navicon {
   width: 110%; }
 
+.calorieCount {
+  color: blue; }
+
 .searchBarr {
   width: 20%; }
 
