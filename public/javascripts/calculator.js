@@ -15,13 +15,17 @@ function onMealWeightChange() {
 // Sum all total kcal
 const calorieCount = () => {
 
-    const calories = document.querySelectorAll('.kcalToCount span').innerHTML
-
-    calories.forEach(elm => total += elm)
-
-    document.querySelector('.calorieCount').innerHTML = calorieCounter.toFixed(2)
-
-    return calorieCounter
+    let total = 0
+    let calories = document.querySelectorAll('.kcalToCount span')
+    let num = []
+    calories.forEach(elm => {
+        num.push(parseInt(elm.innerHTML))
+    })
+    console.log(num)
+    num.forEach(elm => total += +elm)
+    document.querySelector('.calorieCount').innerHTML = total
+    // console.log(total)
+    return total
 }
 
 
