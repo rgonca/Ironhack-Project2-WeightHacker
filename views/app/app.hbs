@@ -37,15 +37,16 @@
                     <option value="{{_id}}">{{date}}</option>
                     {{/each}}
                 </select>
-                <button type="submit">Select</button>
+                <button class="btn btn-outline-success" type="submit">Select</button>
             </form>
         </div>
     </div>
 
 
+
     <div class="card" style="width: 60%;">
         <div class="card-body">
-            <h2>Search new item</h2>
+            <h3>Add item to log</h3>
             <form action="/app/registry?registry={{registry._id}}" method="GET" class="form-inline my-2 my-lg-0">
                 {{#if registry}}
                 <input type="hidden" name="registry" value="{{registry._id}}">
@@ -57,8 +58,7 @@
         </div>
     </div>
 </div>
-
-{{!-- cuidado aqui --}}
+{{!-- CREATE NEW MEALS --}}
 {{#if meal}}
 <div class="row align-items-start">
 
@@ -111,7 +111,14 @@
 </div>
 
 {{/if}}
-
+<div class="row justify-content-center">
+    <div class="card" style="width: 60%;">
+        <div class="row justify-content-center">
+            <h2><span class="calorieCount">0</span>/<span>1500</span>kcal</h2>
+            <button type="submit" class="btn btn-outline-success" id="counter">Calculate</button>
+        </div>
+    </div>
+</div>
 
 {{#if registry}}
 {{!-- Iterar sobre objeto y array para ir pintando cada meal del registro en cada día --}}
@@ -136,13 +143,13 @@
                 <td> <img class="img-search" src=" {{image}}" alt="foodImage" srcset=""></td>
                 <td>{{name}}</td>
                 <td>{{amount_gr}} gr</td>
-                <td>{{kcal}} kcal</td>
+                <td class="kcalToCount"><span>{{kcal}}</span>kcal</td>
                 <td>
                     <input type="checkbox" id="mealId" name="mealId" value="{{_id}}">
                 </td>
             </tr>
             {{/each}}
-            <button type="submit" class="" id="deleteBtn">Delete</button>
+            <button type="submit" class="btn btn-danger" id="deleteBtn">Delete</button>
 
         </form>
     </tbody>

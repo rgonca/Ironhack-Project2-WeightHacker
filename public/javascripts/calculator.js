@@ -1,4 +1,3 @@
-
 //Calculator funcion
 function onMealWeightChange() {
     const weight = document.querySelector('.mealWeight input').value
@@ -15,16 +14,16 @@ function onMealWeightChange() {
 
 // Sum all total kcal
 const calorieCount = () => {
-    let total = 0
-    const calorieCounter = document.querySelectorAll(".allKcal").value
-    calorieCounter.forEach(elm => total += elm)
-    return total
+
+    const calories = document.querySelectorAll('.kcalToCount span').innerHTML
+
+    calories.forEach(elm => total += elm)
+
+    document.querySelector('.calorieCount').innerHTML = calorieCounter.toFixed(2)
+
+    return calorieCounter
 }
 
 
-// const calculateCaloriesBtn = document.getElementById('calculate')
-// calculateCaloriesBtn.addEventListener('click', onCalculateButtonClick)
-
-
-
-
+const calculateCaloriesBtn = document.getElementById('counter')
+calculateCaloriesBtn.addEventListener('click', calorieCount)
