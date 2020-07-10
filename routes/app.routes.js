@@ -11,8 +11,8 @@ const User = require("../models/user.model")
 
 router.get('/app', (req, res, next) => {
     Registry.find({
-            owner: req.user.id
-        })
+        owner: req.user.id
+    })
         .then(registries => {
             res.render('app/app', {
                 registries
@@ -27,11 +27,11 @@ router.post('/registry/new', (req, res, next) => {
         date
     } = req.body
     Registry.create({
-            owner: req.user.id,
-            date: moment(date).format("MMM Do YY")
-        })
+        owner: req.user.id,
+        date: moment(date).format("MMM Do YY")
+    })
         .then(registry => res.render('app/app', registry))
-        .then((registry) => res.redirect('/app'))
+        .then(() => res.redirect('/app'))
         .catch(err => next(new Error(err)))
 
 })
@@ -78,10 +78,10 @@ router.get('/app/registry', (req, res, next) => {
 //pushes a new meal into registry
 router.post('/app/registry', (req, res, next) => {
     Registry.findByIdAndUpdate(req.body.registryId, {
-            $push: {
-                meals: req.body
-            }
-        })
+        $push: {
+            meals: req.body
+        }
+    })
         .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
         .catch(err => next(new Error(err)))
 })
@@ -89,16 +89,16 @@ router.post('/app/registry', (req, res, next) => {
 router.post('/app/registry/delete', (req, res, next) => {
 
     Registry.findByIdAndUpdate(req.body.registryId, {
-                $pull: {
-                    meals: {
-                        _id: req.body.mealId
-                    }
-                }
-            }, {
-                new: true
+        $pull: {
+            meals: {
+                _id: req.body.mealId
             }
+        }
+    }, {
+        new: true
+    }
 
-        )
+    )
         .then((registry) => res.redirect(`/app/registry?registry=${registry._id}`))
         .catch(err => next(new Error(err)))
 

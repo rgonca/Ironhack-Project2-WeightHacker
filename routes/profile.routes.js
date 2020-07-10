@@ -23,7 +23,6 @@ router.post('/users/:userId', (req, res, next) => {
     const { sex, targetWeight } = req.body
     console.log('traza', req.body)
     User.update({ _id: req.params.userId }, { sex, targetWeight })
-        // .then(user => res.render('auth/profile'))
         .then(() => res.redirect('/profile'))
         .catch(err => next(new Error(err)))
 })
