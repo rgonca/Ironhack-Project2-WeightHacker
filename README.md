@@ -13,12 +13,6 @@ MVP:
 •	Register weight periodically and show weight graph in a calendar
 
 
-NICE TO HAVE:
-
-•   Photo gallery for meal inspiration
-•   Showing nutritional value of meal, apart from kcal
-
-
 
 ENDPOINTS SUMMARY:
 
@@ -70,30 +64,10 @@ POST /weigths
 GET /weights
 
 
-
-//barra de busqueda autocompletable
-
-
-
 Endpoints Table
 
 https://docs.google.com/document/d/1OHunDXJFPNSby8PSIBlEq83TdxhMudEehAKHHALQi-8/edit?usp=sharing
 
-Autocomplete searchbar
-calendar?
-HACER:
-Crear en la vista de la barra de busqueda una tabla donde se muestre el resultado de la busqueda y un boton de añadido (+) al registro.
 
 
-
-HACER:
-Crear en la vista de la barra de busqueda una tabla donde se muestre el resultado de la busqueda y un boton de añadido (+) al registro.
-
-
-
-
-RAMAS:
-git checkout -b (nombre)
-git checkout -b roberto
-git checkout -n miriam
 

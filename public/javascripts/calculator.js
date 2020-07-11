@@ -24,7 +24,6 @@ const calorieCount = () => {
     console.log(num)
     num.forEach(elm => total += +elm)
     document.querySelector('.calorieCount').innerHTML = total
-    // console.log(total)
     return total
 }
 

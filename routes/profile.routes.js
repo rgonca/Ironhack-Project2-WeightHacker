@@ -4,7 +4,7 @@ const router = express.Router()
 const passport = require("passport")
 
 const User = require("../models/user.model")
-// const Profile = require("../models/profile.model") // wtf
+
 
 
 //User Profile
