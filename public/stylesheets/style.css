@@ -11,11 +11,35 @@ h1, h2, h3 {
   font-weight: 200; }
 
 .navbar {
-  margin-bottom: 70px;
-  width: 10; }
+  background-color: grey;
+  color: white; }
 
-.navbar-dark .navbar-nav .nav-link {
-  color: black; }
+.navbar-brand {
+  font-size: 1.5em;
+  padding-left: 20px; }
+
+.navbar a {
+  color: white; }
+
+.nav-link {
+  color: white !important;
+  font-size: 1.1em;
+  text-transform: uppercase; }
+
+.navbar-toggler {
+  border-color: #ff66cb;
+  margin-right: 50px; }
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+
+.navbar-collapse {
+  padding-right: 20px; }
 
 .navicon {
   width: 110%; }

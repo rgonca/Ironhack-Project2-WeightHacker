@@ -15,20 +15,49 @@ h1, h2, h3 {
 }
 
 .navbar {
-  margin-bottom: 70px;
-  width: 10
+  background-color:  grey;
+  color: white;
+}
+.navbar-brand {
+font-size: 1.5em;
+padding-left: 20px;
 }
 
-.navbar-dark .navbar-nav .nav-link{
-  color: black;
+.navbar a {
+  color: white;
+
 }
-// .navbar.navbar-3 .navbar-toggler-icon {
-// background-image: url('https://mdbootstrap.com/img/svg/hamburger1.svg?color=6a1b9a');
-// }
+
+.nav-link{
+  color: white !important;
+  font-size: 1.1em;
+  text-transform: uppercase;
+}
+
+.navbar-toggler {
+  border-color: rgb(255,102,203);
+  margin-right: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navbar-collapse{
+  padding-right: 20px;
+}
 
 .navicon{
   width: 110%;
 } 
+
+
+
 .calorieCount{
   color: blue;
 }
