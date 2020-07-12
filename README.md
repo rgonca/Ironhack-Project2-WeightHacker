@@ -33,7 +33,7 @@ npm i
 npm run dev
 ```
 
-Make sure you modify .env and add Nutriotionix API keys.
+Make sure you modify .env and add Nutritionix API keys.
 
 
 
