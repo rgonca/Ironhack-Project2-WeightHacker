@@ -13,7 +13,7 @@ AUTH & PROFILE ROUTES:
 | Method   | #GET    | #POST   | #GET   | #POST  | #GET           | #GET        | #POST          |
 | -------- | ------- | ------- | ------ | ------ | -------------- | ----------- | -------------- |
 | Endpoint | /signup | /signup | /login | /login | /users/:userId | /profile    | /users/:userId |
-| -------- | ------- | ------- | ------ | ------ | -------------- | ----------- | -------------- |
+
 | Action   | Sign up | Sign up | Log in | Log in | Edit user      | Get profile | Edit user      |
 
 APP ROUTES
