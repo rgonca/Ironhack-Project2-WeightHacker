@@ -20,7 +20,6 @@ APP ROUTES
 | Method   | #GET         | #POST         | #GET           | #POST            | #POST                |
 | -------- | ------------ | ------------- | -------------- | ---------------- | -------------------- |
 | Endpoint | /app         | /registry/new | /app/registry  | /app/registry    | /app/registry/delete |
-| -------- | ------------ | ------------- | -------------- | ---------------- | -------------------- |
 | Action   | Get registry | New registry  | Shows registry | Logs meal        | Deletes meal         |
 
 
