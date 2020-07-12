@@ -1,7 +1,9 @@
 # Ironhack - Project 2 
-## WeightHacker: Calorie counter using Nutritionix API.
+## WeightHacker: Calorie counter using Nutritionix API
 
 Contributors: Miriam & Roberto
+
+Current status: work in progress. Frontend is pending, as well as adding graphs for weight tracking.
 
 
 ## ENDPOINTS SUMMARY
